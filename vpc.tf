@@ -7,4 +7,6 @@ resource "aws_vpc" "kthw" {
     ),
     var.custom_tags
   )
+  enable_dns_support   = true
+  enable_dns_hostnames = true
 }
