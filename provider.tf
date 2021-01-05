@@ -1,10 +1,3 @@
-# provider "aws" {
-#   region = var.aws_region
-#   assume_role {
-#     role_arn = "arn:aws:iam::185198025243:role/PowerUser"
-#   }
-# }
-
 terraform {
   required_providers {
     aws = {
@@ -12,11 +5,14 @@ terraform {
       version = "~> 3.0"
     }
   }
+  # arn:aws:s3:::kthw-tfstate
+  backend "s3" {
+    encrypt        = true
+    bucket         = "kthw-tfstate"
+    dynamodb_table = "kthw-statelock"
+    key            = "terraform-state/terraform.tfstate"
+    # region       = "us-west-2"
+  }
 }
 
-provider "aws" {
-  profile    = "default"
-  region     = var.aws_region
-  access_key = var.access_key
-  secret_key = var.secret_key
-}
+provider "aws" {}
