@@ -1,4 +1,4 @@
-resource "aws_subnet" "private_a" {
+resource "aws_subnet" "nodes_a" {
   cidr_block        = "10.0.1.0/24"
   availability_zone = "${var.aws_region}a"
   tags = merge(
@@ -10,7 +10,7 @@ resource "aws_subnet" "private_a" {
   )
   vpc_id = aws_vpc.kthw.id
 }
-resource "aws_subnet" "private_b" {
+resource "aws_subnet" "nodes_b" {
   cidr_block        = "10.0.2.0/24"
   availability_zone = "${var.aws_region}b"
   tags = merge(
@@ -22,7 +22,7 @@ resource "aws_subnet" "private_b" {
   )
   vpc_id = aws_vpc.kthw.id
 }
-resource "aws_subnet" "private_c" {
+resource "aws_subnet" "nodes_c" {
   cidr_block        = "10.0.3.0/24"
   availability_zone = "${var.aws_region}c"
   tags = merge(
@@ -34,7 +34,7 @@ resource "aws_subnet" "private_c" {
   )
   vpc_id = aws_vpc.kthw.id
 }
-resource "aws_subnet" "public_c" {
+resource "aws_subnet" "public" {
   cidr_block        = "10.0.4.0/24"
   availability_zone = "${var.aws_region}c"
   tags = merge(
