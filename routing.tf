@@ -27,18 +27,18 @@ resource "aws_route_table" "kthw_public" {
   }
 }
 resource "aws_route_table_association" "nodes_a" {
-  subnet_id      = "${aws_subnet.nodes_a.id}"
-  route_table_id = "${aws_route_table.kthw_routing.id}"
+  subnet_id      = aws_subnet.nodes_a.id
+  route_table_id = aws_route_table.kthw_routing.id
 }
 resource "aws_route_table_association" "nodes_b" {
-  subnet_id      = "${aws_subnet.nodes_b.id}"
-  route_table_id = "${aws_route_table.kthw_routing.id}"
+  subnet_id      = aws_subnet.nodes_b.id
+  route_table_id = aws_route_table.kthw_routing.id
 }
 resource "aws_route_table_association" "nodes_c" {
-  subnet_id      = "${aws_subnet.nodes_c.id}"
-  route_table_id = "${aws_route_table.kthw_routing.id}"
+  subnet_id      = aws_subnet.nodes_c.id
+  route_table_id = aws_route_table.kthw_routing.id
 }
 resource "aws_route_table_association" "public" {
-  subnet_id      = "${aws_subnet.public.id}"
-  route_table_id = "${aws_route_table.kthw_public.id}"
+  subnet_id      = aws_subnet.public.id
+  route_table_id = aws_route_table.kthw_public.id
 }

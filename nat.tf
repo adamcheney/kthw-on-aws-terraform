@@ -9,7 +9,6 @@ resource "aws_eip" "natgw_eip" {
     var.custom_tags
   )
 }
-
 resource "aws_nat_gateway" "nat_gateway" {
   tags = merge(
     map(
