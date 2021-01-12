@@ -10,7 +10,7 @@ terraform {
     encrypt        = true
     bucket         = "kthw-tfstate"
     dynamodb_table = "kthw-statelock"
-    key            = "terraform-state/test-node.tfstate"
+    key            = "terraform-state/terraform.tfstate"
     # region       = "us-west-2"
   }
 }
