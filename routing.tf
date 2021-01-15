@@ -1,7 +1,7 @@
-resource "aws_route_table" "kthw_public" {
+resource "aws_route_table" "kthw_routing" {
   tags = merge(
     map(
-      "Name", "KtHW Public Route Table",
+      "Name", "KtHW Route Table",
       "created-by", var.owner
     ),
     var.custom_tags
