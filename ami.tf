@@ -1,7 +1,6 @@
 data "aws_ami" "node_base" {
   most_recent = true
-  # name_regex  = "focal-20.04"
-  owners = ["137112412989"]
+  owners      = ["137112412989"]
   filter {
     name   = "name"
     values = ["amzn-ami-*"]
