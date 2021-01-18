@@ -6,6 +6,6 @@ do
   do
     instanceid=$(aws ec2 describe-instances --filters "Name=tag:node,Values=${role}-${index}" | \
                  jq '.Reservations[].Instances[] | select(.State.Name=="running") | .InstanceId')
-    alias ${role}-${index}='aws ssm start-session --target ${instanceid}'
+    alias ${role}-${index}="aws ssm start-session --target ${instanceid}"
   done
 done

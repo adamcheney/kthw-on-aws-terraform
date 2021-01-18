@@ -1,7 +1,7 @@
 resource "aws_instance" "controller" {
   count                = 3
   ami                  = data.aws_ami.node_base.id
-  instance_type        = "t2.micro"
+  instance_type        = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
   availability_zone    = "${var.aws_region}${element(["a", "b", "c"], count.index)}"
   source_dest_check    = false
@@ -18,7 +18,7 @@ resource "aws_instance" "controller" {
 resource "aws_instance" "worker" {
   count                = 3
   ami                  = data.aws_ami.node_base.id
-  instance_type        = "t2.micro"
+  instance_type        = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
   availability_zone    = "${var.aws_region}${element(["a", "b", "c"], count.index)}"
   source_dest_check    = false

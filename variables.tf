@@ -18,3 +18,6 @@ variable "custom_tags" {
 }
 # variable "access_key" {}
 # variable "secret_key" {}
+variable "instance_type" {
+  default = "t3.micro"
+}
