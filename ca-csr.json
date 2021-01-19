@@ -1,7 +1,7 @@
 {
   "CN": "Kubernetes",
   "key": {
-    "algo": "ecdsa"
+    "algo": "ecdsa",
     "size": 521
   },
   "names": [
@@ -9,7 +9,7 @@
       "C": "NZ",
       "ST": "Wellington & Wairarapa",
       "L": "Wellington",
-      "O": "Adam's Kubes Training"
+      "O": "Adam's Kubes Training",
       "OU": "KtHW on AWS"
     }
   ]
