@@ -11,13 +11,14 @@ locals {
   ]
 }
 resource "aws_instance" "controller" {
-  count                = 3
-  ami                  = data.aws_ami.node_base.id
-  instance_type        = var.instance_type
-  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  availability_zone    = element(local.availability_zone, count.index)
-  subnet_id            = element(local.subnet_id, count.index)
-  source_dest_check    = false
+  count                       = 3
+  ami                         = data.aws_ami.node_base.id
+  instance_type               = var.instance_type
+  iam_instance_profile        = aws_iam_instance_profile.ssm_profile.name
+  availability_zone           = element(local.availability_zone, count.index)
+  subnet_id                   = element(local.subnet_id, count.index)
+  source_dest_check           = false
+  associate_public_ip_address = false
   tags = merge(
     map(
       "Name", "KtHW Controller-${count.index}",
@@ -29,13 +30,14 @@ resource "aws_instance" "controller" {
   )
 }
 resource "aws_instance" "worker" {
-  count                = 3
-  ami                  = data.aws_ami.node_base.id
-  instance_type        = var.instance_type
-  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  availability_zone    = element(local.availability_zone, count.index)
-  subnet_id            = element(local.subnet_id, count.index)
-  source_dest_check    = false
+  count                       = 3
+  ami                         = data.aws_ami.node_base.id
+  instance_type               = var.instance_type
+  iam_instance_profile        = aws_iam_instance_profile.ssm_profile.name
+  availability_zone           = element(local.availability_zone, count.index)
+  subnet_id                   = element(local.subnet_id, count.index)
+  source_dest_check           = false
+  associate_public_ip_address = false
   tags = merge(
     map(
       "Name", "KtHW Worker-${count.index}",
