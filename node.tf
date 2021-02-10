@@ -5,9 +5,9 @@ locals {
     "${var.aws_region}c"
   ]
   subnet_id = [
-    "${aws_subnet.nodes_a.id}",
-    "${aws_subnet.nodes_b.id}",
-    "${aws_subnet.nodes_c.id}"
+    aws_subnet.nodes_a.id,
+    aws_subnet.nodes_b.id,
+    aws_subnet.nodes_c.id
   ]
 }
 resource "aws_instance" "controller" {

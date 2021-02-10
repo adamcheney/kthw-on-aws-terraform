@@ -33,3 +33,5 @@ override.tf.json
 # Ignore AWS key pair
 adam-kthw.csv
 awsenv.sh
+**/*.pem
+**/*.csr
