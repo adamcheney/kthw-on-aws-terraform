@@ -4,8 +4,8 @@ variable "state_s3bucket" {
 variable "statelock_dynamodb" {
   default = "kthw-statelock"
 }
-variable "kthw_cidr" {
-  default = "10.240.0.0/16"
+variable "kthw_classb_network" {
+  default = "10.240"
 }
 variable "aws_region" {
   default = "us-west-2"

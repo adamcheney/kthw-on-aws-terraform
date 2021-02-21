@@ -1,33 +1,23 @@
-resource "aws_subnet" "nodes_a" {
-  cidr_block        = "10.240.1.0/24"
-  availability_zone = "${var.aws_region}a"
-  tags = merge(
-    map(
-      "Name", "KtHW_A",
-      "created-by", var.owner
-    ),
-    var.custom_tags
-  )
-  vpc_id = aws_vpc.kthw.id
+locals {
+  cidr = [
+    join(".", [var.kthw_classb_network, "1.0/24"]),
+    join(".", [var.kthw_classb_network, "2.0/24"]),
+    join(".", [var.kthw_classb_network, "3.0/24"])
+  ]
+  availability_zone = [
+    "${var.aws_region}a",
+    "${var.aws_region}b",
+    "${var.aws_region}c"
+  ]
+
 }
-resource "aws_subnet" "nodes_b" {
-  cidr_block        = "10.240.2.0/24"
-  availability_zone = "${var.aws_region}b"
+resource "aws_subnet" "nodes" {
+  count             = 3
+  cidr_block        = element(local.cidr, count.index)
+  availability_zone = element(local.availability_zone, count.index)
   tags = merge(
     map(
-      "Name", "KtHW_B",
-      "created-by", var.owner
-    ),
-    var.custom_tags
-  )
-  vpc_id = aws_vpc.kthw.id
-}
-resource "aws_subnet" "nodes_c" {
-  cidr_block        = "10.240.3.0/24"
-  availability_zone = "${var.aws_region}c"
-  tags = merge(
-    map(
-      "Name", "KtHW_C",
+      "Name", "KtHW_${element(local.availability_zone, count.index)}",
       "created-by", var.owner
     ),
     var.custom_tags
