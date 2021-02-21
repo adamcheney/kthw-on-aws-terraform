@@ -1,8 +1,5 @@
-locals {
-  cidr = join(".", [var.kthw_classb_network, "0.0/16"])
-}
 resource "aws_vpc" "kthw" {
-  cidr_block = local.cidr
+  cidr_block = local.vpc_cidr
   tags = merge(
     map(
       "Name", "KtHW VPC",
