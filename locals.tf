@@ -24,10 +24,5 @@ locals {
     join(".", [var.kthw_classb_network, "2.0/24"]),
     join(".", [var.kthw_classb_network, "3.0/24"])
   ]
-  availability_zone = [
-    "${var.aws_region}a",
-    "${var.aws_region}b",
-    "${var.aws_region}c"
-  ]
   vpc_cidr = join(".", [var.kthw_classb_network, "0.0/16"])
 }
