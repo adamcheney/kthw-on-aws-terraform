@@ -17,11 +17,13 @@ jq_publicip='.Reservations[].Instances[] | select(.State.Name=="running") | .Pub
 jq_privateip='.Reservations[].Instances[] | select(.State.Name=="running") | .PrivateIpAddress'
 for i in 0 1 2; do
   instance="worker-${i}"
-  instance_hostname="ip-10-0-1-2${i}"
+  instance_hostname="ip-10-240-$((i+1))-11"
   # jsonnode=$(${aws_desc} --filters "Name=tag:node,Values=${instance}")
   # extip=$(${jq} ${jq_publicip} \'${jsonnode}\')
   extip=$(aws ec2 describe-instances --filters "Name=tag:node,Values=${instance}" | ${jq} "${jq_publicip}")
   intip=$(aws ec2 describe-instances --filters "Name=tag:node,Values=${instance}" | ${jq} "${jq_privateip}")
+  instance_hostname
+  echo "Generating cert for ${instance} with hostname ${instance_hostname}, external ip ${extip} and internal ip ${intip}"
 
   cfssl gencert \
   -ca=certs/ca.pem \
@@ -63,11 +65,14 @@ KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
 KUBERNETES_HOSTNAMES=kubernetes,kubernetes.default,kubernetes.default.svc,kubernetes.default.svc.cluster,kubernetes.svc.cluster.local
 CONTROLLER_IPS=10.240.1.10,10.240.2.10,10.240.3.10 
 # see locals.tf
+
+echo "Generating cert for load balancer with external ip ${KUBERNETES_PUBLIC_ADDRESS}"
+
 cfssl gencert \
   -ca=certs/ca.pem \
   -ca-key=certs/ca-key.pem \
   -config=conf/ca-config.json \
-  -hostname=10.32.0.1,${CONTROLLER_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,${KUBERNETES_HOSTNAMES} \ 
+  -hostname=10.32.0.1,${CONTROLLER_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,${KUBERNETES_HOSTNAMES} \
   -profile=kubernetes \
   conf/kubernetes-csr.json | cfssljson -bare certs/kubernetes
 
