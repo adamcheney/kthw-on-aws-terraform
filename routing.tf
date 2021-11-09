@@ -13,14 +13,14 @@ resource "aws_route_table" "kthw_routing" {
   }
 }
 resource "aws_route_table_association" "nodes_a" {
-  subnet_id      = aws_subnet.nodes_a.id
+  subnet_id      = aws_subnet.nodes[0].id
   route_table_id = aws_route_table.kthw_routing.id
 }
 resource "aws_route_table_association" "nodes_b" {
-  subnet_id      = aws_subnet.nodes_b.id
+  subnet_id      = aws_subnet.nodes[1].id
   route_table_id = aws_route_table.kthw_routing.id
 }
 resource "aws_route_table_association" "nodes_c" {
-  subnet_id      = aws_subnet.nodes_c.id
+  subnet_id      = aws_subnet.nodes[2].id
   route_table_id = aws_route_table.kthw_routing.id
 }
