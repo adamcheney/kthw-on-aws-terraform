@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+# OUTPUT IP INFORMATION FOR ALL WORKER INSTANCES
 aws_desc="/usr/local/bin/aws ec2 describe-instances";
 jq="/usr/local/bin/jq"
 jq_publicip='.Reservations[].Instances[] | select(.State.Name=="running") | .PublicIpAddress'
