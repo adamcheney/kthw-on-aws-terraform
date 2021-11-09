@@ -9,12 +9,12 @@ resource "aws_instance" "controller" {
   source_dest_check           = false
   associate_public_ip_address = false
   tags = merge(
-    map(
-      "Name", "KtHW Controller-${count.index}",
-      "created-by", var.owner,
-      "role", "control",
-      "node", "control-${count.index}"
-    ),
+    tomap({
+      "Name"      = "KtHW Controller-${count.index}",
+      "created-by"= var.owner,
+      "role"      = "control",
+      "node"      = "control-${count.index}"
+    }),
     var.custom_tags
   )
 }
@@ -29,12 +29,12 @@ resource "aws_instance" "worker" {
   source_dest_check           = false
   associate_public_ip_address = false
   tags = merge(
-    map(
-      "Name", "KtHW Worker-${count.index}",
-      "created-by", var.owner,
-      "role", "worker",
-      "node", "worker-${count.index}"
-    ),
+    tomap({
+      "Name"      = "KtHW Worker-${count.index}",
+      "created-by"= var.owner,
+      "role"      = "worker",
+      "node"      = "worker-${count.index}"
+    }),
     var.custom_tags
   )
 }

@@ -1,9 +1,9 @@
 resource "aws_security_group" "kthw_firewall_rules" {
   tags = merge(
-    map(
-      "Name", "KtHW Firewall",
-      "created-by", var.owner
-    ),
+    tomap({
+      "Name"      = "KtHW Firewall",
+      "created-by"= var.owner
+    }),
     var.custom_tags
   )
   name        = "kthw_firewall"

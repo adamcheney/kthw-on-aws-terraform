@@ -1,9 +1,9 @@
 resource "aws_route_table" "kthw_routing" {
   tags = merge(
-    map(
-      "Name", "KtHW Route Table",
-      "created-by", var.owner
-    ),
+    tomap({
+      "Name"      = "KtHW Route Table",
+      "created-by"= var.owner
+    }),
     var.custom_tags
   )
   vpc_id = aws_vpc.kthw.id

@@ -24,10 +24,10 @@ resource "aws_s3_bucket" "terraform-state-storage-s3" {
     prevent_destroy = false
   }
   tags = merge(
-    map(
-      "name", "KtHW Terraform state remote storage",
-      "created-by", var.owner
-    ),
+    tomap({
+      "name" = "KtHW Terraform state remote storage",
+      "created-by" = var.owner
+    }),
     var.custom_tags
   )
 }
@@ -42,10 +42,10 @@ resource "aws_dynamodb_table" "terraform-state-lock-dynamodb" {
     type = "S"
   }
   tags = merge(
-    map(
-      "name", "KtHW Terraform state lock storage",
-      "created-by", var.owner
-    ),
+    tomap({
+      "name" = "KtHW Terraform state lock storage",
+      "created-by" = var.owner
+    }),
     var.custom_tags
   )
 }
