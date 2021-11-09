@@ -13,6 +13,7 @@ resource "aws_instance" "controller" {
   private_ip                  = element(local.control_ip, count.index)
   source_dest_check           = false
   associate_public_ip_address = true
+  vpc_security_group_ids = [aws_security_group.kthw_firewall_rules.id]
   key_name = aws_key_pair.kthw.key_name
   tags = merge(
     tomap({
@@ -34,6 +35,7 @@ resource "aws_instance" "worker" {
   private_ip                  = element(local.worker_ip, count.index)
   source_dest_check           = false
   associate_public_ip_address = true
+  vpc_security_group_ids = [aws_security_group.kthw_firewall_rules.id]
   key_name = aws_key_pair.kthw.key_name
   tags = merge(
     tomap({
