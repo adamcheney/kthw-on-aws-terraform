@@ -12,7 +12,7 @@ resource "aws_instance" "controller" {
   subnet_id                   = element(local.subnet_id, count.index)
   private_ip                  = element(local.control_ip, count.index)
   source_dest_check           = false
-  associate_public_ip_address = false
+  associate_public_ip_address = true
   key_name = aws_key_pair.kthw.key_name
   tags = merge(
     tomap({
@@ -33,7 +33,7 @@ resource "aws_instance" "worker" {
   subnet_id                   = element(local.subnet_id, count.index)
   private_ip                  = element(local.worker_ip, count.index)
   source_dest_check           = false
-  associate_public_ip_address = false
+  associate_public_ip_address = true
   key_name = aws_key_pair.kthw.key_name
   tags = merge(
     tomap({

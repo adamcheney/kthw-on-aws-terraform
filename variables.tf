@@ -7,3 +7,6 @@ variable "custom_tags" {
 variable "instance_type" {
   default = "t3.micro"
 }
+
+variable "ssh_ip_allowed" {
+}
