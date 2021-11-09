@@ -6,6 +6,7 @@ terraform {
     }
   }
 }
+
 provider "aws" {
   profile    = "default"
   region     = var.aws_region
@@ -14,7 +15,7 @@ provider "aws" {
 }
 # Create S3 bucket for state file
 resource "aws_s3_bucket" "terraform-state-storage-s3" {
-  bucket = "kthw-tfstate"
+  bucket = var.state_s3bucket
   versioning {
     # enable with caution, makes deleting S3 buckets tricky
     # very useful for ensuring recovery
@@ -33,7 +34,7 @@ resource "aws_s3_bucket" "terraform-state-storage-s3" {
 }
 # Create DynamoDB table for lock
 resource "aws_dynamodb_table" "terraform-state-lock-dynamodb" {
-  name           = "kthw-statelock"
+  name           = var.statelock_dynamodb
   hash_key       = "LockID"
   read_capacity  = 20
   write_capacity = 20
