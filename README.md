@@ -11,9 +11,13 @@ requires `cfssl` and `cfssljson` to generate certs for nodes
 
 access to an aws account
 
-## generating certs
+## generating certs and config
+
+For both of these you'll need to generate your own ssh key pair and specify the public key in the top level `variables.tf` file. In `distribute-certs.sh` and `distribute-conf.sh` you'll need to provide the path to your private key.
 
 To generate and distribute the certs to your infra, run `gen-csr-conf.sh` followed by `gen-keys.sh` then `distribute-certs.sh` in the certs folder.
+
+To generate and distribute config to your infra, run `generate-conf.sh` followed by `distribute-conf.sh` in the kube-conf folder.
 
 ## security
 
