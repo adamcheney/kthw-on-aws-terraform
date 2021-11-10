@@ -37,3 +37,4 @@ awsenv.sh
 **/*.csr
 **/*csr.json
 **/*.kubeconfig
+**/encryption-config.yaml

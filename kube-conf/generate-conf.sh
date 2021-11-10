@@ -109,4 +109,21 @@ kubectl config set-context default \
   --kubeconfig=conf/admin.kubeconfig
 
 kubectl config use-context default --kubeconfig=conf/admin.kubeconfig
+
+# at rest encryption config
+ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
+cat > conf/encryption-config.yaml <<EOF
+kind: EncryptionConfig
+apiVersion: v1
+resources:
+  - resources:
+      - secrets
+    providers:
+      - aescbc:
+          keys:
+            - name: key1
+              secret: ${ENCRYPTION_KEY}
+      - identity: {}
+EOF
+
 popd

@@ -25,7 +25,7 @@ for instance in control-0 control-1 control-2; do
   
   echo "Uploading config to ${instance}"
   scp -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} \
-    conf/admin.kubeconfig conf/kube-controller-manager.kubeconfig conf/kube-scheduler.kubeconfig ec2-user@${external_ip}:~/
+    conf/admin.kubeconfig conf/kube-controller-manager.kubeconfig conf/kube-scheduler.kubeconfig conf/encryption-config.yaml ec2-user@${external_ip}:~/
 done
 
 popd
