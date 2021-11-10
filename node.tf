@@ -24,6 +24,9 @@ resource "aws_instance" "controller" {
     }),
     var.custom_tags
   )
+
+  user_data = "${file("user-data/controller-user-data.sh")}"
+
 }
 resource "aws_instance" "worker" {
   count                       = 3
