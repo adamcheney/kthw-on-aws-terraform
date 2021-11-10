@@ -1,4 +1,5 @@
 #!/bin/bash
+pushd $(dirname $0)
 
 PRIVATE_KEY="~/.ssh/kthw.id_rsa"
 
@@ -25,3 +26,5 @@ for instance in worker-0 worker-1 worker-2; do
 
   scp -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} certs/ca.pem certs/${instance}-key.pem certs/${instance}.pem ec2-user@${external_ip}:~/
 done
+
+popd

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pushd $(dirname $0)
+
 PRIVATE_KEY="~/.ssh/kthw.id_rsa"
 
 # distribute to workers
@@ -25,3 +27,5 @@ for instance in control-0 control-1 control-2; do
   scp -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} \
     conf/admin.kubeconfig conf/kube-controller-manager.kubeconfig conf/kube-scheduler.kubeconfig ec2-user@${external_ip}:~/
 done
+
+popd

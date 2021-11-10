@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+pushd $(dirname $0)
+
 infile="./conf/csr-template.json"
 
 function generate_csr {
@@ -26,3 +28,5 @@ do
   generate_csr "system:node:${instance}" "system:nodes" "./conf/${instance}-csr.json"
 done
 # GENERATE CONTROLLER CSR
+
+popd

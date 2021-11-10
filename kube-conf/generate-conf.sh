@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pushd $(dirname $0)
+
 mkdir -p conf
 
 KUBERNETES_PUBLIC_ADDRESS=$(aws elbv2 describe-load-balancers \
@@ -107,3 +109,4 @@ kubectl config set-context default \
   --kubeconfig=conf/admin.kubeconfig
 
 kubectl config use-context default --kubeconfig=conf/admin.kubeconfig
+popd

@@ -1,4 +1,5 @@
 #!/bin/zsh
+pushd $(dirname $0)
 
 mkdir -p certs
 # GENERATE CA CERT + KEYS
@@ -83,3 +84,5 @@ cfssl gencert \
   -config=conf/ca-config.json \
   -profile=kubernetes \
   conf/service-account-csr.json | cfssljson -bare certs/service-account
+
+popd
