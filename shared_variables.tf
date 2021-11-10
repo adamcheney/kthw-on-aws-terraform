@@ -19,6 +19,3 @@ variable "owner" {
 variable "statelock_dynamodb" {
   default = "kthw-statelock"
 }
-
-variable "instance-ssh-public-key" {
-}
