@@ -23,7 +23,6 @@ for i in 0 1 2; do
   # extip=$(${jq} ${jq_publicip} \'${jsonnode}\')
   extip=$(aws ec2 describe-instances --filters "Name=tag:node,Values=${instance}" | ${jq} "${jq_publicip}")
   intip=$(aws ec2 describe-instances --filters "Name=tag:node,Values=${instance}" | ${jq} "${jq_privateip}")
-  instance_hostname
   echo "Generating cert for ${instance} with hostname ${instance_hostname}, external ip ${extip} and internal ip ${intip}"
 
   cfssl gencert \
