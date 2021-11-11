@@ -25,7 +25,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable kube-apiserver kube-controller-manager kube-scheduler etcd
 sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler etcd
         
-EOF &
+EOF
 
 done
 
