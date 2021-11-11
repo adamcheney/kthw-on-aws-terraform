@@ -25,7 +25,7 @@ resource "aws_instance" "controller" {
     var.custom_tags
   )
 
-  user_data = "${file("user-data/controller-user-data.sh")}"
+  user_data = "${file("user-data/controller-user-data.sh")}name=control-${count.index}"
 
 }
 resource "aws_instance" "worker" {
@@ -49,4 +49,6 @@ resource "aws_instance" "worker" {
     }),
     var.custom_tags
   )
+
+  user_data = "name=worker-${count.index}|pod-cidr=10.200.${count.index}.0/24"
 }
