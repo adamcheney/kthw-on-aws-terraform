@@ -24,8 +24,9 @@ resource "aws_instance" "controller" {
     }),
     var.custom_tags
   )
+  depends_on = [aws_lb.kthw]
 
-  user_data = "${file("user-data/controller-user-data.sh")}name=control-${count.index}"
+  user_data = "${file("user-data/controller-user-data.sh")}\nname=control-${count.index}"
 
 }
 resource "aws_instance" "worker" {
@@ -50,5 +51,5 @@ resource "aws_instance" "worker" {
     var.custom_tags
   )
 
-  user_data = "name=worker-${count.index}|pod-cidr=10.200.${count.index}.0/24"
+  user_data = "${file("user-data/worker-user-data.sh")}\nname=worker-${count.index}|pod-cidr=10.200.${count.index}.0/24"
 }

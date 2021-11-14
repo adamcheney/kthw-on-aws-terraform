@@ -126,4 +126,25 @@ resources:
       - identity: {}
 EOF
 
+# local kubectl config
+# use this one for accessing your cluster remotely
+
+kubectl config set-cluster kubernetes-the-hard-way \
+  --certificate-authority=../certs/certs/ca.pem \
+  --embed-certs=true \
+  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:443 \
+  --kubeconfig=conf/kthw.kubeconfig
+
+kubectl config set-credentials admin \
+  --client-certificate=../certs/certs/admin.pem \
+  --client-key=../certs/certs/admin-key.pem \
+  --kubeconfig=conf/kthw.kubeconfig
+
+kubectl config set-context kubernetes-the-hard-way \
+  --cluster=kubernetes-the-hard-way \
+  --user=admin \
+  --kubeconfig=conf/kthw.kubeconfig
+
+kubectl config use-context kubernetes-the-hard-way
+
 popd
