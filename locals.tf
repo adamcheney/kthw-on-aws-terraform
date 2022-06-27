@@ -5,19 +5,19 @@ locals {
     "${var.aws_region}c"
   ]
   subnet_id = [
-    aws_subnet.nodes_a.id,
-    aws_subnet.nodes_b.id,
-    aws_subnet.nodes_c.id
+    aws_subnet.nodes[0].id,
+    aws_subnet.nodes[1].id,
+    aws_subnet.nodes[2].id
   ]
   control_ip = [
-    join(".", [var.kthw_classb_network, "1.0"]),
-    join(".", [var.kthw_classb_network, "2.0"]),
-    join(".", [var.kthw_classb_network, "3.0"])
+    join(".", [var.kthw_classb_network, "1.10"]),
+    join(".", [var.kthw_classb_network, "2.10"]),
+    join(".", [var.kthw_classb_network, "3.10"])
   ]
   worker_ip = [
-    join(".", [var.kthw_classb_network, "1.1"]),
-    join(".", [var.kthw_classb_network, "2.1"]),
-    join(".", [var.kthw_classb_network, "3.1"])
+    join(".", [var.kthw_classb_network, "1.11"]),
+    join(".", [var.kthw_classb_network, "2.11"]),
+    join(".", [var.kthw_classb_network, "3.11"])
   ]
   subnet_cidr = [
     join(".", [var.kthw_classb_network, "1.0/24"]),

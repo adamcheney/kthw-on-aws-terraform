@@ -35,3 +35,6 @@ adam-kthw.csv
 awsenv.sh
 **/*.pem
 **/*.csr
+**/*csr.json
+**/*.kubeconfig
+**/encryption-config.yaml
